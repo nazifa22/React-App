@@ -1,0 +1,41 @@
+.events {
+    margin: 35px 0;
+}
+
+.users {
+    display: flex;
+    align-items: center;
+}
+
+p,
+h3 {
+    margin-bottom: 0;
+}
+
+.d-block {
+    display: block;
+}
+
+.d-none {
+    display: none;
+}
+
+/* -----
+SVG Icons - svgicons.sparkk.fr
+----- */
+
+.svg-icon {
+    width: 25px;
+    height: 25px;
+}
+  
+.svg-icon path,
+.svg-icon polygon,
+.svg-icon rect {
+    fill: #4691f6;
+}
+  
+.svg-icon circle {
+    stroke: #4691f6;
+    stroke-width: 1;
+}
