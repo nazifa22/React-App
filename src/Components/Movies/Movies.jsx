@@ -4,12 +4,21 @@ import Counter from '../Counter/counter'
 import Like from './Like'
 import Pagination from '../../Pagination/Pagination';
 import { paginate } from './../../utils/paginate';
+import SideNav from '../SideNav/SideNav';
+import { getGenres } from '../../services/fakeGenreService';
 
 class Movies extends Component {
     state = {
-        movies: getMovies(),
+        movies: [],
         pageSize: 4,
-        currentPage: 1
+        currentPage: 1,
+        genres: [],
+        selectedGenre: ''
+    }
+
+    componentDidMount() {
+        const genres = [{name: 'All Gnres'}, ...getGenres()]
+        this.setState({ movies: getMovies(), genres })
     }
 
     handleDelete = (movie) => {
@@ -38,55 +47,72 @@ class Movies extends Component {
         console.log(page)
     }
 
+    handleGenre = genre => {
+        this.setState({ selectedGenre: genre, currentPage: 1 })
+    }
+
     render() {
         const { length: moviesLength } = this.state.movies
-        const { pageSize, currentPage, movies : allMovies } = this.state
+        const { pageSize, currentPage, movies : allMovies, selectedGenre, genres } = this.state
         console.log('currentPage:', currentPage)
+
+        const filtered = selectedGenre && selectedGenre._id ? allMovies.filter(m => m.genre._id == selectedGenre._id) : allMovies
 
         if(moviesLength === 0 )
             return <p className="text-center pt-5">There are no movies in the database.</p>
         
-        const movies = paginate(allMovies, currentPage, pageSize)
+        const movies = paginate(filtered, currentPage, pageSize)
 
         return (
             <>
-                <p className="mt-5">Showing {moviesLength} movies in the database.</p>
-                <table class="table">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">Title</th>
-                            <th scope="col">Gener</th>
-                            <th scope="col">Stock</th>
-                            <th scope="col">Rate</th>
-                            <th scope="col"></th>
-                            <th scope="col"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            movies.map(movie => (
-                                <tr key={ movie._id }>
-                                    <td>{ movie.title }</td>
-                                    <td>{ movie.genre.name }</td>
-                                    <td>{ movie.numberInStock }</td>
-                                    <td>{ movie.dailyRentalRate }</td>
-                                    <td>
-                                        <Like liked = { movie.liked } handleLike={ () => this.handleLike(movie) } />
-                                    </td>
-                                    <td>
-                                        <button className="btn btn-warning" onClick={ () => this.handleDelete(movie) }>Delete</button>
-                                    </td>
-                                </tr> 
-                            ))
-                        }
-                    </tbody>
-                </table>
-                <Pagination 
-                    itemsCount = { moviesLength }
-                    pageSize = { pageSize }
-                    currentPage = { currentPage }
-                    onPageChange = { this.handlePageChange }
-                />
+                <div className="row">
+                    <div className="col-md-4">
+                        <SideNav
+                            items = { genres } 
+                            onItemSelect = { this.handleGenre }
+                            selectedItem = { selectedGenre } 
+                        />
+                    </div>
+                    <div className="col-md-8">
+                        <p className="mt-5">Showing { filtered.length } movies in the database.</p>
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Gener</th>
+                                    <th scope="col">Stock</th>
+                                    <th scope="col">Rate</th>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    movies.map(movie => (
+                                        <tr key={ movie._id }>
+                                            <td>{ movie.title }</td>
+                                            <td>{ movie.genre.name }</td>
+                                            <td>{ movie.numberInStock }</td>
+                                            <td>{ movie.dailyRentalRate }</td>
+                                            <td>
+                                                <Like liked = { movie.liked } handleLike={ () => this.handleLike(movie) } />
+                                            </td>
+                                            <td>
+                                                <button className="btn btn-warning" onClick={ () => this.handleDelete(movie) }>Delete</button>
+                                            </td>
+                                        </tr> 
+                                    ))
+                                }
+                            </tbody>
+                        </table>
+                        <Pagination 
+                            itemsCount = { filtered.length }
+                            pageSize = { pageSize }
+                            currentPage = { currentPage }
+                            onPageChange = { this.handlePageChange }
+                        />
+                    </div>
+                </div>
             </>
         )
     }
