@@ -57,21 +57,42 @@ class Movies extends Component {
         this.setState({ sortColumn })
     }
 
-    render() {
-        const { length: moviesLength } = this.state.movies
-        const { pageSize, currentPage, movies : allMovies, selectedGenre, genres, sortColumn } = this.state
-        console.log('currentPage:', sortColumn)
+    getPagedDate = () => {
+        const { 
+            pageSize, 
+            currentPage,
+            movies : allMovies,
+            selectedGenre, 
+            sortColumn } = this.state;
 
-        const filtered = selectedGenre && selectedGenre._id ? allMovies.filter(m => m.genre._id == selectedGenre._id) : allMovies;
+        const filtered = 
+        selectedGenre && selectedGenre._id 
+            ? allMovies.filter(m => m.genre._id == selectedGenre._id) 
+            : allMovies;
 
         const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order]);
 
         const movies = paginate(sorted, currentPage, pageSize);
 
+        return { totalCount: filtered.length, data: movies }
+    }
+
+    render() {
+        const { length: moviesLength } = this.state.movies
+        const { 
+            pageSize, 
+            currentPage,
+             movies : allMovies,
+             selectedGenre, 
+             genres, 
+             sortColumn } = this.state;
+
+        console.log('currentPage:', sortColumn)
+
         if(moviesLength === 0 )
             return <p className="text-center pt-5">There are no movies in the database.</p>
         
-
+        const { totalCount, data: movies } = this.getPagedDate();
         return (
             <>
                 <div className="row">
@@ -83,7 +104,7 @@ class Movies extends Component {
                         />
                     </div>
                     <div className="col-md-8">
-                        <p className="mt-5">Showing { filtered.length } movies in the database.</p>
+                        <p className="mt-5">Showing { totalCount } movies in the database.</p>
                         <MoviesTable 
                             movies = { movies }
                             onLike = { this.handleLike }
@@ -92,7 +113,7 @@ class Movies extends Component {
                             sortColumn = { sortColumn }
                         />
                         <Pagination 
-                            itemsCount = { filtered.length }
+                            itemsCount = { totalCount }
                             pageSize = { pageSize }
                             currentPage = { currentPage }
                             onPageChange = { this.handlePageChange }
