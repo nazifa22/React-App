@@ -9,7 +9,7 @@ class Counter extends Component {
         return ( 
             <div className="container">
                 <div className="row" selected={true}>
-                    <div className="col-12 mt-5">
+                    <div className="col-12 mt-4">
                         <img src={counter.imageURL} alt="Logo" className="mr-3"/> 
                         <span className="badge badge-success">
                             {counter.value === 0 ? 'Zero' : counter.value}

@@ -11,6 +11,39 @@ th {
   cursor: pointer;
 }
 
+.page-404 {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.page-404 p {
+  color: #777777;
+  font-family: "montserrat", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 36px;
+  margin: 30px 0;
+}
+
+.page-404 a {
+  font-family: "montserrat", sans-serif;
+  font-size: 14px;
+  color: #0C98D5;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.5s ease-in-out;
+}
+
+.page-404 a:hover {
+  text-decoration: none;
+  letter-spacing: 4px;
+  transition: all 0.5s ease-in-out;
+  color: #0C98D5;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
