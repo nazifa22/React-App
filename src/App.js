@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import { Route, Redirect, Switch } from "react-router-dom";
-import Movies from "./components/movies";
-import MovieForm from "./components/movieForm";
-import Customers from "./components/customers";
-import Rentals from "./components/rentals";
-import NotFound from "./components/notFound";
-import NavBar from "./components/navBar";
-import Game from './components/Game/Game';
-import Counter from './components/Counter/counters';
-import Login from './components/loginForm';
-import Register from './components/registerForm';
+import Movies from "./Components/movies";
+import MovieForm from "./Components/movieForm";
+import Customers from "./Components/customers";
+import Rentals from "./Components/rentals";
+import NotFound from "./Components/notFound";
+import NavBar from "./Components/navBar";
+import Game from './Components/Game/Game';
+import Counter from './Components/Counter/counters';
+import Login from './Components/loginForm';
+import Register from './Components/registerForm';
 import "./App.css";
 import "antd/dist/antd.css";
 
