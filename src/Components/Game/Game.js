@@ -117,7 +117,7 @@ class Game extends Component {
             <div className='game'>
                 <Row justify='center'>
                     <Col span = {5}>
-                        <h1 className = "text-center">YOU</h1>
+                        <p className = "text-center">YOU</p>
                         <div className = "healthbar">
                             <div className = "healthbar text-center" 
                             style={{
@@ -131,7 +131,7 @@ class Game extends Component {
                     </Col>
                     <Col span = {2}></Col>
                     <Col span = {5}>
-                        <h1 className = "text-center">MONSTER</h1>
+                        <p className = "text-center">MONSTER</p>
                         <div className = "healthbar">
                             <div className = "healthbar text-center" 
                             style={{
