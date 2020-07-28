@@ -102,7 +102,8 @@ class Movies extends Component {
         <div className="col">
           <Link
             to="/movies/new"
-            className="btn btn-warning mb-4"
+            className="btn btn-warning"
+            style={{ marginBottom: 20 }}
           >
             New Movie
           </Link>

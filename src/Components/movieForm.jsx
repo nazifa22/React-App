@@ -36,7 +36,7 @@ class MovieForm extends Form {
       .label("Daily Rental Rate")
   };
 
-  ComponentDidMount() {
+  componentDidMount() {
     const genres = getGenres();
     this.setState({ genres });
 
@@ -67,10 +67,8 @@ class MovieForm extends Form {
 
   render() {
     return (
-      <div className="mt-5">
-        <p>
-          Add New Movie
-        </p>
+      <div>
+        <h1>Movie Form</h1>
         <form onSubmit={this.handleSubmit}>
           {this.renderInput("title", "Title")}
           {this.renderSelect("genreId", "Genre", this.state.genres)}

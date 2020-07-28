@@ -15,7 +15,7 @@ class Counter extends Component {
                             {counter.value === 0 ? 'Zero' : counter.value}
                         </span> &nbsp;
                         <button onClick={ handleIncrement } className="btn btn-warning">Increment</button> &nbsp;
-                        <button onClick={ handleDecrement } className="btn btn-warning" disabled = { counter.value == 0 ? 'disabled' : '' }>Decrement</button> &nbsp;
+                        <button onClick={ handleDecrement } className="btn btn-info" disabled = { counter.value == 0 ? 'disabled' : '' }>Decrement</button> &nbsp;
                         <button className="btn btn-primary" onClick={ resetHandler }>Reset</button> &nbsp;
                         <button onClick={ handleDelete } className="btn btn-danger">Delete</button> &nbsp;
                     </div>

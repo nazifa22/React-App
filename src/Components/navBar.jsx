@@ -5,7 +5,7 @@ const NavBar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <Link className="navbar-brand" to="/">
-        Logo
+        Vidly
       </Link>
       <button
         className="navbar-toggler"
@@ -20,11 +20,11 @@ const NavBar = () => {
       </button>
       <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div className="navbar-nav ml-auto">
-          <NavLink className="nav-item nav-link" to="/game">
-            Game
-          </NavLink>
           <NavLink className="nav-item nav-link" to="/counter">
             Counter
+          </NavLink>
+          <NavLink className="nav-item nav-link" to="/game">
+            Game
           </NavLink>
           <NavLink className="nav-item nav-link" to="/movies">
             Movies
