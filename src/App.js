@@ -14,6 +14,7 @@ import Register from './Components/registerForm';
 import "./App.css";
 import "antd/dist/antd.css";
 import 'react-toastify/dist/ReactToastify.css';
+import Counters from "./Components/Counter/counters";
 
 class App extends Component {
   render() {
@@ -23,6 +24,8 @@ class App extends Component {
         <NavBar />
         <main className="container">
           <Switch>
+            <Route path="/counter" component={Counters} />
+            <Route path="/game" component={Game} />
             <Route path="/movies/:id" component={MovieForm} />
             <Route path="/movies" component={Movies} />
             <Route path="/game" component={Game} />
